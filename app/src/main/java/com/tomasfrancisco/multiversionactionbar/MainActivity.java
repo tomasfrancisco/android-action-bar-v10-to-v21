@@ -1,11 +1,14 @@
 package com.tomasfrancisco.multiversionactionbar;
 
 import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,12 +28,15 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         // Associate searchable configuration with the SearchView
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        //if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            ComponentName componentName = new ComponentName(this, SearchResultsActivity.class);
+
             SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-            SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+            SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName));
             searchView.setIconifiedByDefault(false);
-        }
+        //}
 
         return true;
     }

@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="search_hint">Find something</string>
+    <string name="title_activity_search_results">SearchResultsActivity</string>
 
 </resources>
